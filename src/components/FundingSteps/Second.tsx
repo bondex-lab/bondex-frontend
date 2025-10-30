@@ -4,9 +4,10 @@ const { Text } = Typography;
 
 interface SecondProps {
     onCreateEscrow: () => void;
+    escrowAddress: string;
 }
 
-const Second: React.FC<SecondProps> = ({ onCreateEscrow }) => {
+const Second: React.FC<SecondProps> = ({ onCreateEscrow, escrowAddress }) => {
     const handleClick = () => {
         console.log("Escrow account created");
         onCreateEscrow()

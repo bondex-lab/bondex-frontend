@@ -5,7 +5,7 @@ import { coins } from "@cosmjs/stargate";
 
 const { Text } = Typography;
 
-const SelfTransferButton: React.FC = () => {
+const TestButton: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const [txHash, setTxHash] = useState<string | null>(null);
 
@@ -50,4 +50,4 @@ const SelfTransferButton: React.FC = () => {
     );
 };
 
-export default SelfTransferButton;
+export default TestButton;

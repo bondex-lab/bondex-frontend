@@ -18,6 +18,9 @@ const Third: React.FC<ThirdProps> = ({ escrowAccount }) => {
             <Text>
                 Now you need to send using CLI a proposal so that the funds can start flowing into the escrow account.
             </Text>
+            <Text>
+                Once the Continuous Fund is created, you will be able to work with your assets.
+            </Text>
         </Space>
     );
 };
