@@ -3,15 +3,10 @@ import { Button, Space, Typography } from "antd";
 const { Text } = Typography;
 
 interface SecondProps {
-    onCreateEscrow: () => void;
-    escrowAddress: string;
+    instantiateEscrow: () => void;
 }
 
-const Second: React.FC<SecondProps> = ({ onCreateEscrow, escrowAddress }) => {
-    const handleClick = () => {
-        console.log("Escrow account created");
-        onCreateEscrow()
-    };
+const Second: React.FC<SecondProps> = ({instantiateEscrow}) => {
 
     return (
         <Space direction="vertical" style={{ width: "100%", alignItems: "center" }}>
@@ -21,7 +16,7 @@ const Second: React.FC<SecondProps> = ({ onCreateEscrow, escrowAddress }) => {
             <Button
                 type="primary"
                 size="large"
-                onClick={handleClick}
+                onClick={instantiateEscrow}
                 style={{
                     borderRadius: 8,
                     backgroundColor: "#1677ff",

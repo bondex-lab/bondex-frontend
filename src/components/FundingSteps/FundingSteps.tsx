@@ -5,17 +5,14 @@ import First from "./First";
 import Second from "./Second";
 import Third from "./Third";
 import Fourth from "./Fourth";
+import {instantiateContract} from "../../helpers/Instantiate";
 
 const FundingSteps = () => {
     const { address } = useKeplrContext();
     const { token } = theme.useToken();
     const [current, setCurrent] = useState(0);
-    const [escrowAccount, setEscrowAccount] = useState(''); // временный адрес
+    const [escrowAccount, setEscrowAccount] = useState('');
     const [continuousFund, setContinuousFund] = useState<any>(null);
-
-    useEffect(() => {
-        if (address) setEscrowAccount(address);
-    }, [address]);
 
     useEffect(() => {
         if (!address) setCurrent(0);
@@ -24,6 +21,42 @@ const FundingSteps = () => {
         else if (escrowAccount && continuousFund) setCurrent(3);
         else setCurrent(3);
     }, [address, escrowAccount, continuousFund]);
+
+    const instantiateEscrow = async () => {
+        try {
+            const contractAddress = await instantiateContract(1);
+            console.log("Contract deployed at:", contractAddress);
+        } catch (err) {
+            console.error("Error instantiating contract:", err);
+        }
+    };
+
+    const getEscrow = async () => {
+        try {
+            const response = await fetch(`http://localhost:1317/cosmwasm/wasm/v1/code/1/contracts`);
+            if (!response.ok) throw new Error("Failed to fetch contracts");
+
+            const data = await response.json();
+            // console.log("Contracts for codeId:", data.contracts);
+
+            const contractInfos = await Promise.all(
+                data.contracts.map(async (contractAddr: string) => {
+                    const resp = await fetch(`http://localhost:1317/cosmwasm/wasm/v1/contract/${contractAddr}`);
+                    const info = await resp.json();
+                    return { address: contractAddr, creator: info.contract_info?.creator };
+                })
+            );
+
+            const myContracts = contractInfos
+                .filter(c => c.creator === address)
+                .map(c => c.address);
+            setEscrowAccount(myContracts[0]);
+            // console.log("Your contract address:", myContracts);
+        } catch (err) {
+            console.error(err);
+        }
+    };
+    getEscrow();
 
     useEffect(() => {
         const fetchContinuousFund = async () => {
@@ -75,7 +108,7 @@ const FundingSteps = () => {
             <div style={contentStyle}>
                 {current === 0 && <First />}
                 {current === 1 && (
-                    <Second escrowAddress={escrowAccount} onCreateEscrow={() => setEscrowAccount("wasm1chn84qjd0qph4x5x7lk76mkygfyqs745342j8r")} />
+                    <Second instantiateEscrow={instantiateEscrow} />
                 )}
                 {current === 2 && <Third escrowAccount={escrowAccount} />}
                 {current === 3 && <Fourth continuousFund={continuousFund} escrowAddress={escrowAccount}/>}

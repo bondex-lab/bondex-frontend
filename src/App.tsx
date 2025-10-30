@@ -47,7 +47,7 @@ const AppLayout: React.FC = () => {
             </Content>
 
             <Footer style={{background: "lightgray", textAlign: "center" }}>
-                Developer during Hackmos 2025
+                Developed during Hackmos 2025
             </Footer>
         </Layout>
     );
