@@ -1,5 +1,5 @@
 import { GasPrice, SigningStargateClient } from "@cosmjs/stargate";
-import { WASMD_CHAIN_INFO, CHAIN_ID, RPC_ENDPOINT, GAS_PRICE, DENOM } from "./Network";
+import { WASMD_CHAIN_INFO, CHAIN_ID, RPC_ENDPOINT, GAS_PRICE, DENOM } from "../NetworkConfig";
 import { Window as KeplrWindow } from "@keplr-wallet/types";
 
 declare global {
