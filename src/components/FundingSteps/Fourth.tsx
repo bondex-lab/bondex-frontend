@@ -57,25 +57,28 @@ const Fourth: React.FC<FourthProps> = ({ continuousFund, escrowAddress }) => {
                     <Form.Item<FieldType>
                         label="Total numbers"
                         name="totalNumbers"
+                        initialValue={100}
                         rules={[{ required: true, message: 'Please input total numbers!' }]}
                     >
-                        <Input />
+                        <Input disabled />
                     </Form.Item>
 
                     <Form.Item<FieldType>
                         label="Price per bond"
                         name="pricePerBond"
+                        initialValue={1000}
                         rules={[{ required: true, message: 'Please input price per bond!' }]}
                     >
-                        <Input />
+                        <Input disabled/>
                     </Form.Item>
 
                     <Form.Item<FieldType>
                         label="Attracting deposits"
                         name="attractingDeposits"
+                        initialValue={800}
                         rules={[{ required: true, message: 'Please input attract deposits!' }]}
                     >
-                        <Input />
+                        <Input disabled />
                     </Form.Item>
 
                     <Form.Item wrapperCol={{ offset: 1, span: 22 }}>

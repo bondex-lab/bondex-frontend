@@ -6,6 +6,7 @@ import Second from "./Second";
 import Third from "./Third";
 import Fourth from "./Fourth";
 import {instantiateContract} from "../../helpers/Instantiate";
+import Fifth from "./Fifth";
 
 const codeId = Number(process.env.ESCROW_INSTANTIATION_CODE_ID) || 1;
 
@@ -14,7 +15,7 @@ const FundingSteps = () => {
     const { token } = theme.useToken();
     const [current, setCurrent] = useState(0);
     const [escrowAccount, setEscrowAccount] = useState('');
-    const [continuousFund, setContinuousFund] = useState<any>(null);
+    const [continuousFund, setContinuousFund] = useState<any>('');
 
     useEffect(() => {
         if (!address) setCurrent(0);
@@ -90,6 +91,7 @@ const FundingSteps = () => {
         { key: "Create Escrow Account", title: "Create Escrow Account" },
         { key: "Submit Proposal", title: "Submit Proposal" },
         { key: "Continuous Fund", title: "Continuous Fund" },
+        { key: "Withdraw Assets", title: "Withdraw Assets" },
     ];
 
     const contentStyle: React.CSSProperties = {
@@ -114,6 +116,7 @@ const FundingSteps = () => {
                 )}
                 {current === 2 && <Third escrowAccount={escrowAccount} />}
                 {current === 3 && <Fourth continuousFund={continuousFund} escrowAddress={escrowAccount}/>}
+                {current === 4 && <Fifth continuousFund={continuousFund} escrowAddress={escrowAccount}/>}
             </div>
         </>
     );
