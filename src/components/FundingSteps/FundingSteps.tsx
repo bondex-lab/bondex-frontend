@@ -7,6 +7,8 @@ import Third from "./Third";
 import Fourth from "./Fourth";
 import {instantiateContract} from "../../helpers/Instantiate";
 
+const codeId = Number(process.env.ESCROW_INSTANTIATION_CODE_ID) || 1;
+
 const FundingSteps = () => {
     const { address } = useKeplrContext();
     const { token } = theme.useToken();
@@ -24,7 +26,7 @@ const FundingSteps = () => {
 
     const instantiateEscrow = async () => {
         try {
-            const contractAddress = await instantiateContract(1);
+            const contractAddress = await instantiateContract(codeId);
             console.log("Contract deployed at:", contractAddress);
         } catch (err) {
             console.error("Error instantiating contract:", err);
@@ -33,7 +35,7 @@ const FundingSteps = () => {
 
     const getEscrow = async () => {
         try {
-            const response = await fetch(`http://localhost:1317/cosmwasm/wasm/v1/code/1/contracts`);
+            const response = await fetch(`http://localhost:1317/cosmwasm/wasm/v1/code/${codeId}/contracts`);
             if (!response.ok) throw new Error("Failed to fetch contracts");
 
             const data = await response.json();
