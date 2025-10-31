@@ -44,32 +44,36 @@ const FundingSteps = () => {
         }
     };
 
-    const getEscrow = async () => {
-        try {
-            const response = await fetch(`http://localhost:1317/cosmwasm/wasm/v1/code/${codeId}/contracts`);
-            if (!response.ok) throw new Error("Failed to fetch contracts");
+    useEffect(() => {
+        const getEscrow = async () => {
+            try {
+                const response = await fetch(`http://localhost:1317/cosmwasm/wasm/v1/code/${codeId}/contracts`);
+                if (!response.ok) throw new Error("Failed to fetch contracts");
 
-            const data = await response.json();
-            // console.log("Contracts for codeId:", data.contracts);
+                const data = await response.json();
+                // console.log("Contracts for codeId:", data.contracts);
 
-            const contractInfos = await Promise.all(
-                data.contracts.map(async (contractAddr: string) => {
-                    const resp = await fetch(`http://localhost:1317/cosmwasm/wasm/v1/contract/${contractAddr}`);
-                    const info = await resp.json();
-                    return { address: contractAddr, creator: info.contract_info?.creator };
-                })
-            );
+                const contractInfos = await Promise.all(
+                    data.contracts.map(async (contractAddr: string) => {
+                        const resp = await fetch(`http://localhost:1317/cosmwasm/wasm/v1/contract/${contractAddr}`);
+                        const info = await resp.json();
+                        return { address: contractAddr, creator: info.contract_info?.creator };
+                    })
+                );
 
-            const myContracts = contractInfos
-                .filter(c => c.creator === address)
-                .map(c => c.address);
-            setEscrowAccount(myContracts[0]);
-            // console.log("Your contract address:", myContracts);
-        } catch (err) {
-            console.error(err);
-        }
-    };
-    getEscrow();
+                const myContracts = contractInfos
+                    .filter(c => c.creator === address)
+                    .map(c => c.address);
+                setEscrowAccount(myContracts[0]);
+                // console.log("Your contract address:", myContracts);
+            } catch (err) {
+                console.error(err);
+            }
+        };
+        getEscrow();
+    }, []);
+
+
 
     useEffect(() => {
         const fetchContinuousFund = async () => {

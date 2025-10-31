@@ -1,24 +1,32 @@
 import React from 'react';
-import {Card, Col, Row} from "antd";
+import {Card, Col, Row, Space, Typography} from "antd";
 import styled from "styled-components";
 import { Link } from 'react-router';
-import {exampleBonds} from "../helpers/BondsExampleList";
-import { Typography } from 'antd';
 
-const { Title} = Typography;
+const { Title, Text } = Typography;
 
-const BondsMarketplace = () => {
+type BondsMarketplaceType = {
+    contractData: any
+};
+
+const BondsMarketplace: React.FC<BondsMarketplaceType> = ({ contractData }) => {
+    const bondsArray = contractData ? [contractData] : [];
+
     return (
         <>
-            <Title level={2}>Avaliable bonds</Title>
+            <Title level={2}>Available bonds</Title>
             <Row gutter={[16, 16]} wrap>
-                {exampleBonds.map(bond => (
-                    <Col key={bond.id} xs={24} sm={12} md={8} lg={8}>
-                        <Link to={`/invest/${bond.id}`}>
-                            <StyledCard title={bond.name}>
-                                <p>{bond.description}</p>
-                                <p><strong>Yield:</strong> {bond.yield}</p>
-                                <p><strong>Maturity:</strong> {bond.maturity}</p>
+                {bondsArray.map((bond, index) => (
+                    <Col key={index} xs={24} sm={12} md={8} lg={8}>
+                        <Link to={`/invest/${bond.cw721_fixed_price_addr || index}`} state={{ bond }}>
+                            <StyledCard title={bond.title || "Unnamed Bond"}>
+                                <Space direction="vertical">
+                                <Text><Text strong>Token: </Text>{bond.outstanding_debt.denom}</Text>
+                                <Text><Text strong>Price rate: </Text>{bond.price_rate}</Text>
+                                <Text><Text strong>Amount: </Text> {bond.outstanding_debt.amount}</Text>
+                                {/*<Text><Text strong>CW20: </Text>{bond.cw20_funding_token_addr}</Text>*/}
+                                {/*<Text><Text strong>CW721: </Text>{bond.cw721_fixed_price_addr}</Text>*/}
+                                </Space>
                             </StyledCard>
                         </Link>
                     </Col>
