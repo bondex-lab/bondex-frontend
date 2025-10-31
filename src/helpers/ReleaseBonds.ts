@@ -34,9 +34,9 @@ export async function releaseBonds(escrowAccount: string) {
         issue_bond_series: {
             name: "CarbonBond2025",
             cw20_funding_token_addr: cw20Address,
-            price_rate: "1.000000000000000000", // Decimal as string
-            number_of_bonds: 1000,
-            price_per_bond: "1000000", // Uint128 as string (e.g., 1.0 token if 6 decimals)
+            price_rate: "0.5", // Decimal as string
+            number_of_bonds: 10,
+            price_per_bond: "2000", // Uint128 as string (e.g., 1.0 token if 6 decimals)
             bond_nft_code_id: bondNftCodeId,
             bond_nft_fixed_price_code_id: bondNftFixedPreceCodeId,
             symbol: "CARBON2025",

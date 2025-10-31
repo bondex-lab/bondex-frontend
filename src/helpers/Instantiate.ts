@@ -36,7 +36,7 @@ export async function instantiateContract(codeId: number) {
         codeId,
         initMsg,
         label,
-        "auto", // автогаз
+        "auto",
         {
             admin: undefined,
         }
