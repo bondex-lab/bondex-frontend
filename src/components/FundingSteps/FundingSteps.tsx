@@ -7,13 +7,14 @@ import Third from "./Third";
 import Fourth from "./Fourth";
 import {instantiateContract} from "../../helpers/Instantiate";
 import Fifth from "./Fifth";
+import {releaseBonds} from "../../helpers/ReleaseBonds";
 
-const codeId = Number(process.env.ESCROW_INSTANTIATION_CODE_ID) || 1;
+const codeId = Number(process.env.REACT_APP_ESCROW_INSTANTIATION_CODE_ID) || 1;
 
 const FundingSteps = () => {
     const { address } = useKeplrContext();
     const { token } = theme.useToken();
-    const [current, setCurrent] = useState(0);
+    const [current, setCurrent] = useState(3);
     const [escrowAccount, setEscrowAccount] = useState('');
     const [continuousFund, setContinuousFund] = useState<any>('');
 
@@ -31,6 +32,15 @@ const FundingSteps = () => {
             console.log("Contract deployed at:", contractAddress);
         } catch (err) {
             console.error("Error instantiating contract:", err);
+        }
+    };
+
+    const release = async () => {
+        try {
+            const result = await releaseBonds(escrowAccount);
+            console.log("Contract deployed at", result);
+        } catch (err) {
+            console.error("Error releasing bonds:", err);
         }
     };
 
@@ -115,8 +125,8 @@ const FundingSteps = () => {
                     <Second instantiateEscrow={instantiateEscrow} />
                 )}
                 {current === 2 && <Third escrowAccount={escrowAccount} />}
-                {current === 3 && <Fourth continuousFund={continuousFund} escrowAddress={escrowAccount}/>}
-                {current === 4 && <Fifth continuousFund={continuousFund} escrowAddress={escrowAccount}/>}
+                {current === 3 && <Fourth continuousFund={continuousFund} escrowAddress={escrowAccount} release={release}/>}
+                {current === 4 && <Fifth continuousFund={continuousFund} escrowAddress={escrowAccount} />}
             </div>
         </>
     );

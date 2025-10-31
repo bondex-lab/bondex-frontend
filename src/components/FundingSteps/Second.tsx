@@ -19,8 +19,8 @@ const Second: React.FC<SecondProps> = ({instantiateEscrow}) => {
                 onClick={instantiateEscrow}
                 style={{
                     borderRadius: 8,
-                    backgroundColor: "#1677ff",
-                    color: "white",
+                    // backgroundColor: "#1677ff",
+                    // color: "white",
                     minWidth: 150,
                 }}
             >

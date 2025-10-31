@@ -1,6 +1,7 @@
 import React from 'react';
 import { Divider, Space, Typography, Form, Input, Button } from "antd";
 import type { FormProps } from 'antd';
+import {releaseBonds} from "../../helpers/ReleaseBonds";
 
 const { Text, Title } = Typography;
 
@@ -21,9 +22,9 @@ const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
 interface FourthProps {
     continuousFund: any;
     escrowAddress: string;
-}
+    release: () => Promise<void>;}
 
-const Fourth: React.FC<FourthProps> = ({ continuousFund, escrowAddress }) => {
+const Fourth: React.FC<FourthProps> = ({ continuousFund, escrowAddress, release }) => {
     return (
         <Space direction="vertical" style={{ width: "100%" }}>
             <Space>
@@ -82,7 +83,7 @@ const Fourth: React.FC<FourthProps> = ({ continuousFund, escrowAddress }) => {
                     </Form.Item>
 
                     <Form.Item wrapperCol={{ offset: 1, span: 22 }}>
-                        <Button type="primary" htmlType="submit">
+                        <Button type="primary" htmlType="submit" onClick={release}>
                             Release
                         </Button>
                     </Form.Item>
