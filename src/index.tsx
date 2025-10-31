@@ -46,7 +46,7 @@ root.render(
                             <Route path="/invest" element={<InvestPage />} />
                             <Route path="/invest/:bondId" element={<BondPage />} />
                             <Route path="/marketplace" element={<SecondaryMarketPage />} />
-                            <Route path="/test" element={<TestPage />} />
+                            {/*<Route path="/test" element={<TestPage />} />*/}
                         </Route>
                     </Routes>
                 </BrowserRouter>

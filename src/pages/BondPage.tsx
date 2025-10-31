@@ -81,8 +81,8 @@ const BondPage: React.FC = () => {
                     <Text strong>CW20 Address:</Text> <Text>{bond.cw20_address}</Text>
                     <br />
                     <Text strong>CW721 Address:</Text> <Text>{bond.cw721_address}</Text>
-                    <Divider />
-                    <Text>{bond.description || "No description provided."}</Text>
+                    {/*<Divider />*/}
+                    {/*<Text>{bond.description || "No description provided."}</Text>*/}
                 </Card>
 
                 {address && (
@@ -96,7 +96,7 @@ const BondPage: React.FC = () => {
                         }}
                         onClick={buyBond}
                     >
-                        Buy 1
+                        Buy Token
                     </Button>
                 )}
             </Space>

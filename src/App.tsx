@@ -20,7 +20,7 @@ const AppLayout: React.FC = () => {
         { key: "/raise", label: <Link to="/raise">Raise Funding</Link> },
         { key: "/invest", label: <Link to="/invest">Invest</Link> },
         { key: "/marketplace", label: <Link to="/marketplace">Secondary Market</Link> },
-        { key: "/test", label: <Link to="/test">Test</Link> },
+        // { key: "/test", label: <Link to="/test">Test</Link> },
     ];
 
     const isHome = location.pathname === "/home";

@@ -20,7 +20,7 @@ const BondsMarketplace: React.FC<BondsMarketplaceType> = ({ contractData }) => {
                     bondsArray.map((bond, index) => (
                         <Col key={index} xs={24} sm={12} md={8} lg={8}>
                             <Link to={`/invest/${bond.cw721_fixed_price_addr || index}`} state={{ bond }}>
-                                <StyledCard title={bond.title || "Unnamed Bond"}>
+                                <StyledCard title={bond.title || "Unnamed Bond"} style={{backgroundColor: "#a2dac8"}}>
                                     <Space direction="vertical">
                                         <Text>
                                             <Text strong>Token: </Text>
