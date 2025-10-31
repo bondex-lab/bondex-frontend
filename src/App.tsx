@@ -17,9 +17,9 @@ const AppLayout: React.FC = () => {
     const menuItems = [
         { key: "logo", label: <Link to="/home"><Image src={logoSmall} alt="logoSmall" width={30} height={30} preview={false}/></Link> },
         { key: "/home", label: <Link to="/home">Home</Link> },
-        { key: "/raise", label: <Link to="/raise">Raise Funding</Link> },
+        { key: "/raise", label: <Link to="/raise">Get Funded</Link> },
         { key: "/invest", label: <Link to="/invest">Invest</Link> },
-        { key: "/marketplace", label: <Link to="/marketplace">Secondary Market</Link> },
+        { key: "/marketplace", label: <Link to="/marketplace">Trade Bonds</Link> },
         // { key: "/test", label: <Link to="/test">Test</Link> },
     ];
 

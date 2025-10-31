@@ -145,8 +145,8 @@ const FundingSteps = () => {
     const items = [
         { key: "Connect Wallet", title: "Connect Wallet" },
         { key: "Create Escrow Account", title: "Create Escrow Account" },
-        { key: "Submit Proposal", title: "Submit Proposal" },
-        { key: "Funding", title: "Funding" },
+        { key: "Submit Proposal", title: "Connect Revenue Stream" },
+        { key: "Funding", title: "Issue Bonds" },
         { key: "Withdraw Assets", title: "Withdraw Assets" },
     ];
 

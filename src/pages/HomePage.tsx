@@ -43,8 +43,9 @@ const HomePage = () => {
                         lineHeight: 1.6,
                     }}
                 >
-                    Bondex is a decentralized platform for issuing, investing, and trading
-                    tokenized bonds.
+                    Revenue-Backed Financing Platform
+                    <br/>
+                    Unlock future revenue. Today.
                 </Text>
                 <Image
                     src={logoBig}

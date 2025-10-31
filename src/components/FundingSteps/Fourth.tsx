@@ -43,7 +43,17 @@ const Fourth: React.FC<FourthProps> = ({ continuousFund, escrowAddress, release 
 
             <Divider />
 
-            <Title level={5} underline>Release bonds</Title>
+            <Text>
+                <b>Description</b>
+            </Text>
+            <Text>
+                Issue revenue-backed bonds based on your connected cash flow
+            </Text>
+            <Text>
+                and unlock instant funding.
+            </Text>
+
+            <Title level={5} underline>Issue bonds</Title>
 
             <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
                 <Form
@@ -56,7 +66,7 @@ const Fourth: React.FC<FourthProps> = ({ continuousFund, escrowAddress, release 
                     autoComplete="off"
                 >
                     <Form.Item<FieldType>
-                        label="Total numbers"
+                        label="Total Number of Bonds"
                         name="totalNumbers"
                         initialValue={100}
                         rules={[{ required: true, message: 'Please input total numbers!' }]}
@@ -65,7 +75,7 @@ const Fourth: React.FC<FourthProps> = ({ continuousFund, escrowAddress, release 
                     </Form.Item>
 
                     <Form.Item<FieldType>
-                        label="Price per bond"
+                        label="Price per Bond"
                         name="pricePerBond"
                         initialValue={1000}
                         rules={[{ required: true, message: 'Please input price per bond!' }]}
@@ -73,18 +83,18 @@ const Fourth: React.FC<FourthProps> = ({ continuousFund, escrowAddress, release 
                         <Input disabled/>
                     </Form.Item>
 
-                    <Form.Item<FieldType>
-                        label="Attracting deposits"
-                        name="attractingDeposits"
-                        initialValue={800}
-                        rules={[{ required: true, message: 'Please input attract deposits!' }]}
-                    >
-                        <Input disabled />
-                    </Form.Item>
+                    {/*<Form.Item<FieldType>*/}
+                    {/*    label="Attracting deposits"*/}
+                    {/*    name="attractingDeposits"*/}
+                    {/*    initialValue={800}*/}
+                    {/*    rules={[{ required: true, message: 'Please input attract deposits!' }]}*/}
+                    {/*>*/}
+                    {/*    <Input disabled />*/}
+                    {/*</Form.Item>*/}
 
                     <Form.Item wrapperCol={{ offset: 1, span: 22 }}>
                         <Button type="primary" htmlType="submit" onClick={release}>
-                            Release
+                            Issue
                         </Button>
                     </Form.Item>
                 </Form>
