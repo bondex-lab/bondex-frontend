@@ -13,24 +13,45 @@ import InvestPage from "./pages/InvestPage";
 import SecondaryMarketPage from "./pages/SecondaryMarketPage";
 import {KeplrProvider} from "./context/KeplrContext";
 import BondPage from "./pages/BondPage";
+import {ConfigProvider} from "antd";
+import TestPage from "./pages/TestPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
     <React.StrictMode>
-        <KeplrProvider>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="*" element={<Navigate to="/home" replace />} />
-                    <Route element={<AppLayout />}>
-                        <Route path="/home" element={<HomePage />} />
-                        <Route path="/raise" element={<RaisePage />} />
-                        <Route path="/invest" element={<InvestPage />} />
-                        <Route path="/invest/:bondId" element={<BondPage />} />
-                        <Route path="/marketplace" element={<SecondaryMarketPage />} />
-                    </Route>
-                </Routes>
-            </BrowserRouter>
-        </KeplrProvider>
+        <ConfigProvider theme={{
+            token: {
+                colorPrimary: "#a2dac8",
+                // colorBgContainer: "#c6ffed",
+                // colorFillAlter: "#32594d",
+            },
+            components: {
+                Button: {
+                    colorTextLightSolid: "#000000",
+                    boxShadow: "none",
+                },
+                Menu: {
+                    darkItemSelectedColor: "#000000",
+                    darkItemColor: "#fff",
+                },
+            }
+        }}>
+            <KeplrProvider>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="*" element={<Navigate to="/home" replace />} />
+                        <Route element={<AppLayout />}>
+                            <Route path="/home" element={<HomePage />} />
+                            <Route path="/raise" element={<RaisePage />} />
+                            <Route path="/invest" element={<InvestPage />} />
+                            <Route path="/invest/:bondId" element={<BondPage />} />
+                            <Route path="/marketplace" element={<SecondaryMarketPage />} />
+                            <Route path="/test" element={<TestPage />} />
+                        </Route>
+                    </Routes>
+                </BrowserRouter>
+            </KeplrProvider>
+        </ConfigProvider>
     </React.StrictMode>
 );
 

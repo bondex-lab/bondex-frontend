@@ -1,8 +1,10 @@
 import React from "react";
-import {Layout, Menu, theme} from "antd";
+import { Layout, Menu, theme, Image } from "antd";
 import { Link, Outlet, useLocation } from "react-router";
 import styled from "styled-components";
 import KeplrButton from "./components/KeplrButton";
+import bgImage from "./assets/bg.png";
+import logoSmall from "./assets/Bondex logo3.png";
 
 const { Header, Footer, Content } = Layout;
 
@@ -13,14 +15,25 @@ const AppLayout: React.FC = () => {
     } = theme.useToken();
 
     const menuItems = [
+        { key: "logo", label: <Link to="/home"><Image src={logoSmall} alt="logoSmall" width={30} height={30} preview={false}/></Link> },
         { key: "/home", label: <Link to="/home">Home</Link> },
         { key: "/raise", label: <Link to="/raise">Raise Funding</Link> },
         { key: "/invest", label: <Link to="/invest">Invest</Link> },
         { key: "/marketplace", label: <Link to="/marketplace">Secondary Market</Link> },
+        { key: "/test", label: <Link to="/test">Test</Link> },
     ];
 
+    const isHome = location.pathname === "/home";
+
     return (
-        <Layout style={{ minHeight: "100vh"}}>
+        <Layout
+            style={{
+                minHeight: "100vh",
+                backgroundImage: `url(${bgImage})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+            }}
+        >
             <StyledHeader>
                 <Menu
                     theme="dark"
@@ -29,24 +42,28 @@ const AppLayout: React.FC = () => {
                     items={menuItems}
                     style={{ flex: 1, minWidth: 0 }}
                 />
-                <KeplrButton/>
+                <KeplrButton />
             </StyledHeader>
 
-            <Content style={{ padding: "24px 48px" }}>
-                <div
-                    style={{
-                        background: colorBgContainer,
-                        borderRadius: borderRadiusLG,
-                        padding: 24,
-                        minHeight: "70vh",
-                        textAlign: "center",
-                    }}
-                >
+            <Content style={{ padding: isHome ? 0 : "24px 48px" }}>
+                {isHome ? (
                     <Outlet />
-                </div>
+                ) : (
+                    <div
+                        style={{
+                            background: colorBgContainer,
+                            borderRadius: borderRadiusLG,
+                            padding: 24,
+                            minHeight: "70vh",
+                            textAlign: "center",
+                        }}
+                    >
+                        <Outlet />
+                    </div>
+                )}
             </Content>
 
-            <Footer style={{background: "lightgray", textAlign: "center" }}>
+            <Footer style={{ background: "lightgray", textAlign: "center", opacity: 0.6}}>
                 Developed during Hackmos 2025
             </Footer>
         </Layout>

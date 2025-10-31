@@ -25,8 +25,6 @@ const BondPage: React.FC = () => {
             </Card>
                 <Button type="primary" size="large" style={{
                     borderRadius: 8,
-                    backgroundColor: "#1677ff",
-                    color: "white",
                     width: '100%',
                     maxWidth: "600px"
                 }}>

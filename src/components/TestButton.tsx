@@ -37,9 +37,9 @@ const TestButton: React.FC = () => {
     };
 
     return (
-        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        <div style={{ display: "flex", flexDirection: "column"}}>
             <Button type="primary" loading={loading} onClick={handleTransfer}>
-                Send Test Tokens to Myself
+                Send My Tokens to Myself (Test)
             </Button>
             {txHash && (
                 <Text copyable>

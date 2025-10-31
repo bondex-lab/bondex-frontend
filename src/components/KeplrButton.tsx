@@ -16,8 +16,8 @@ const KeplrButton = () => {
             onClick={address ? disconnect : connect}
             style={{
                 borderRadius: 8,
-                backgroundColor: address ? "#1677ff" : undefined,
-                color: "white",
+                // backgroundColor: address ? "#1677ff" : undefined,
+                // color: "white",
                 minWidth: 150,
             }}
         >
