@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Button, Card, Divider, Space, Typography, message } from 'antd';
 import { useKeplrContext } from '../context/KeplrContext';
+import {buyBonds} from "../helpers/BuyBond";
 
 const { Title, Text } = Typography;
 
@@ -12,13 +13,22 @@ const BondPage: React.FC = () => {
     const { address } = useKeplrContext();
     const [bond, setBond] = useState<any | null>(null);
 
+    const buyBond = async () => {
+        try {
+            const contractAddress = await buyBonds(bondId || '', bond.unit_price);
+            console.log("Bond has been bought:", contractAddress);
+        } catch (err) {
+            console.error("Error buying bond:", err);
+        }
+    };
+
     useEffect(() => {
         if (!bondId) return;
 
         const fetchBondData = async () => {
             try {
-                const query = btoa(JSON.stringify({ get_config: {} }));
-                const resp = await fetch(`${nodeUrl}/cosmwasm/wasm/v1/contract/${bondId}/smart/${query}`);
+                const getConfig = btoa(JSON.stringify({ get_config: {} }));
+                const resp = await fetch(`${nodeUrl}/cosmwasm/wasm/v1/contract/${bondId}/smart/${getConfig}`);
                 if (!resp.ok) throw new Error("Failed to fetch bond data");
                 const data = await resp.json();
                 setBond(data.data);
@@ -49,7 +59,7 @@ const BondPage: React.FC = () => {
                 <br />
                 <Text strong>Unit Price:</Text> <Text>{bond.unit_price}</Text>
                 <br />
-                <Text strong>Max Tokens:</Text> <Text>{bond.max_tokens}</Text>
+                <Text strong>Remain Tokens:</Text> <Text>{bond.max_tokens - bond.unused_token_id}</Text>
                 <br />
                 <Text strong>CW20 Address:</Text> <Text>{bond.cw20_address}</Text>
                 <br />
@@ -67,6 +77,7 @@ const BondPage: React.FC = () => {
                         width: '100%',
                         maxWidth: 600,
                     }}
+                    onClick={buyBond}
                 >
                     Buy 1
                 </Button>

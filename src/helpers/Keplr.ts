@@ -26,7 +26,7 @@ export async function connectKeplr() {
     const accounts = await offlineSigner.getAccounts();
     const address = accounts[0].address;
 
-    console.log("Connected account:", address);
+    // console.log("Connected account:", address);
 
     const client = await SigningStargateClient.connectWithSigner(
         RPC_ENDPOINT,
@@ -35,7 +35,7 @@ export async function connectKeplr() {
     );
 
     const balance = await client.getBalance(address, DENOM);
-    console.log(`Balance for ${address}:`, balance.amount, balance.denom);
+    // console.log(`Balance for ${address}:`, balance.amount, balance.denom);
 
     return { client, address };
 }
