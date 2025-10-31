@@ -10,7 +10,7 @@ type BondsMarketplaceType = {
 };
 
 const BondsMarketplace: React.FC<BondsMarketplaceType> = ({ contractData }) => {
-    const bondsArray = contractData ? [contractData] : [];
+    const bondsArray = contractData ? [contractData,contractData, contractData,contractData,contractData,contractData] : [];
 
     return (
         <>
