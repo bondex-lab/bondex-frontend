@@ -96,7 +96,7 @@ const Fifth: React.FC<FifthProps> = ({ continuousFund, escrowAddress }) => {
 
                 <Space direction="vertical">
                     <Text><Text strong>Balance CW20: </Text>{balance?.cw20_token_balance}</Text>
-                    <Text><Text strong>Balance Native tokens: </Text>{balance?.native_token_balance.amount} {balance?.native_token_balance.denom}</Text>
+                    <Text><Text strong>Balance Native Tokens: </Text>{balance?.native_token_balance.amount} {balance?.native_token_balance.denom}</Text>
                     <Text><Text strong>Debt Native Tokens: </Text>{config?.outstanding_debt.amount} {config?.outstanding_debt.denom}</Text>
                 </Space>
 

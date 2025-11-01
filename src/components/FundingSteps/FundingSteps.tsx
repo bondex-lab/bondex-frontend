@@ -147,7 +147,7 @@ const FundingSteps = () => {
         { key: "Create Escrow Account", title: "Create Escrow Account" },
         { key: "Submit Proposal", title: "Connect Revenue Stream" },
         { key: "Funding", title: "Issue Bonds" },
-        { key: "Withdraw Assets", title: "Withdraw Assets" },
+        { key: "Withdraw Assets", title: "Access Capital" },
     ];
 
     const contentStyle: React.CSSProperties = {

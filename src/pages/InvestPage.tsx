@@ -35,7 +35,7 @@ const InvestPage = () => {
                 );
 
                 const myContracts = contractInfos
-                    .filter(c => c.creator === address)
+                    // .filter(c => c.creator === address)
                     .map(c => c.address);
 
                 if (myContracts.length === 0) {
